@@ -3,7 +3,7 @@
     flex-grow: 1;
     padding: 16px 0;
     background-color: #1c1c21;
-    /*max-width: 1240px;*/
+/*    max-width: 1240px;*/
 
 }
 
@@ -14,7 +14,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    max-width: 1260px;
+    max-width: 1240px;
 }
 
 .navbar-text-settings {
@@ -53,7 +53,7 @@
 
 .page_logo-container {
     display: inline-block;
-    block-size: 40px;
+    block-size: 50px;
     inline-size: 290px;
     margin: 0 112px;
 }

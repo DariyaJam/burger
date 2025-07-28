@@ -5,13 +5,7 @@
     max-width: 1260px;
     margin: 0 auto;
     padding: 0 20px 40px 20px;
-    flex-direction: column;
     overflow: hidden;
-    max-width: 1240px;
-    margin: 0 auto;
-
-
-
 }
 
 .page_constructor-text-settings {
@@ -22,53 +16,35 @@
 }
 
 .constructor_app-container {
-    display: grid;
     flex: 1 1 auto;
-    height: 100%;
-    grid-template-columns: 1fr 1fr;
-   /* height: calc(100vh - 88px);*/
     display: flex;
     justify-content: space-between;
     height: 100%;
     overflow: hidden;
-
-
 }
 
 .constructor_title {
-
     flex-shrink: 0;
     font-size: 36px;
     margin: 40px 0 20px 0;
 }
 
-.ingredients-nav-button {
-    background-color: transparent;
-    border:none;
-    border-bottom: 1px solid #8585ad;
-    padding: 16px 76px 15px 76px;
-}
 
-.constructor_app-constructor-container {
-    background: red;
-    width: 500px;
-    color: #f2f2f3;
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 20px;
-}
 
 .constructor_app-ingredients-container {
-    background: green;
-    font-family: 'Jet Brains Mono';
+    /*background: green;*/
+    font-family: 'Jet Brains Mono', sans-serif;
     color: #f2f2f3;
-    max-width: 600px;
+    /*max-width: 600px;*/
     display: flex;
     flex-direction: column;
-
-  /*  padding-right: 56px;*/
+    margin-right: 56px;
 }
 
 .ingredients-list-title {
     margin: 40px 0 24px 0;
+}
+
+.ingredients-list-title:first-child {
+    margin-top: 0;
 }

@@ -1,34 +1,6 @@
-@import url('@/fonts/fonts.css');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-    height: 100%;
-    width: 100%;
-    /*overflow-x: hidden;*/
-    background-color: #131316;
-    overflow: hidden;
-}
-
-
-
-#app {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    flex-wrap: nowrap;
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #131316;
-    color: #f2f2f3;
-
-    /*    height: 100vh;*/
-
-}
-
+@import url('@/styles/App.css');
+@import url('@/styles/ConstructorPage.css');
+@import url('@/styles/NavbarPage.css');
+@import url('@/styles/IngredientItem.css');
+@import url('@/styles/NavbarIngredients.css');
+@import url('@/styles/BurgerConstructor.css');

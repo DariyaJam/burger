@@ -1,5 +1,11 @@
-import Navbar from '@/components/Navbar.vue';
+import IngredientItem from "@/components/IngedientItem.vue"
+import NavbarIngredients from '@/components/NavbarIngredients.vue'
+import NavbarPage from '@/components/NavbarPage.vue'
+import BurgerConstructor from '@/components/BurgerConstructor.vue'
 
 export default [
-  Navbar,
+  IngredientItem,
+  NavbarIngredients,
+  NavbarPage,
+  BurgerConstructor,
 ]
