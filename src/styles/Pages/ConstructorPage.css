@@ -13,11 +13,12 @@
     font-family: "Jet Brains Mono", sans-serif;
     font-size: 24px;
     font-weight: 700;
+    line-height: 1.1;
 }
 
 .constructor_app-container {
-    flex: 1 1 auto;
     display: flex;
+    flex: 1 1 auto;
     justify-content: space-between;
     height: 100%;
     overflow: hidden;
@@ -29,22 +30,34 @@
     margin: 40px 0 20px 0;
 }
 
-
-
-.constructor_app-ingredients-container {
-    /*background: green;*/
-    font-family: 'Jet Brains Mono', sans-serif;
-    color: #f2f2f3;
-    /*max-width: 600px;*/
+.ingredients-container {
     display: flex;
     flex-direction: column;
     margin-right: 56px;
 }
 
-.ingredients-list-title {
-    margin: 40px 0 24px 0;
+.ingredients-list-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    padding-bottom: 25vh;
+    margin-top: 40px;
 }
 
-.ingredients-list-title:first-child {
-    margin-top: 0;
+.ingredients-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ingredients-list-container::-webkit-scrollbar-track {
+    background: #2f2f37;
+}
+
+.ingredients-list-container::-webkit-scrollbar-thumb {
+    background-color: #8585ad;
+    background-clip: content-box;
+}
+
+.ingredients-list-container::-webkit-scrollbar-thumb:hover {
+    background-color: #8585ad99;
+    transition: all 0.4s ease-in-out;
 }

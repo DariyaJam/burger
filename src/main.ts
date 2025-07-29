@@ -7,13 +7,12 @@ import router from './router'
 
 const app = createApp(App)
 
-components.forEach(component => {
-  app.component(component.name, component)
-})
 
+/*components.forEach(component => {
+  app.component(component.name, component)
+})*/
 directives.forEach(directive => {
   app.directive(directive.name, directive)
-  console.log('directive included', directive)
 })
 
 

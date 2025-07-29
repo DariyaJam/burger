@@ -1,6 +1,8 @@
-@import url('@/styles/App.css');
-@import url('@/styles/ConstructorPage.css');
-@import url('@/styles/NavbarPage.css');
-@import url('@/styles/IngredientItem.css');
-@import url('@/styles/NavbarIngredients.css');
-@import url('@/styles/BurgerConstructor.css');
+@import url('@/styles/App/App.css');
+@import url('@/styles/App/AppNavbar.css');
+@import url('@/styles/Pages/ConstructorPage.css');
+@import url('@/styles/Pages/OrderFeedPage.css');
+@import url('@/styles/Ingredients/IngredientsList.css');
+@import url('@/styles/Ingredients/IngredientsNavbar.css');
+@import url('@/styles/Constructor/ConstructorApp.css');
+@import url('@/styles/Constructor/ConstructorLayer.css');

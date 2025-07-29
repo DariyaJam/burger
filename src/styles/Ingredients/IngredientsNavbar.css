@@ -1,4 +1,8 @@
-.ingredients-nav-button {
+.ingredients-navbar {
+    position: relative;
+}
+
+.ingredients-navbar-button {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #8585ad;
@@ -8,22 +12,18 @@
     cursor: pointer;
 }
 
-.ingredients-nav-button.active {
+.ingredients-navbar-button.active {
     cursor: default;
 }
 
-.navbar_ingredients-text-settings {
+.ingredients-navbar-text-settings {
     color: #f2f2f3;
     font-family: "Jet Brains Mono", sans-serif;
     font-size: 16px;
     font-weight: 400;
 }
 
-.ingredients-navbar {
-    position: relative;
-}
-
-.nav-item-label {
+.ingredients-navbar-accent-label {
     position: absolute;
     bottom: -1px;
     left: 0;
@@ -33,7 +33,7 @@
     display: inline-block;
 }
 
-.nav-item-label.active {
+.ingredients-navbar-accent-label.active {
     background-color: #4c4cff;
     transition: all 0.3s ease-in-out;
 }

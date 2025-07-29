@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import Navbar from '@/components/NavbarPage.vue'
-
+import { defineAsyncComponent } from 'vue'
 import ConstructorPage from '@/pages/ConstructorPage.vue'
+import OrderListPage from '@/pages/OrderFeedPage.vue'
+import AppNavbar from '@/components/AppNavbar.vue'
+
 </script>
+
 <template>
-  <navbar></navbar>
-  <constructor-page></constructor-page>
+  <AppNavbar></AppNavbar>
+  <ConstructorPage></ConstructorPage>
+<!--  <OrderListPage></OrderListPage>-->
 </template>
 
 <style>
 
 @import url('styles/style.css');
+
 
 </style>

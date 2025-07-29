@@ -28,6 +28,6 @@
 
 <style scoped>
 
-@import url('@/styles/NavbarPage.css');
+@import url('@/styles/App/AppNavbar.css');
 
 </style>

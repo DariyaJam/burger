@@ -1,0 +1,49 @@
+.constructor-app {
+    display: flex;
+    flex-direction: column;
+    color: #f2f2f3;
+    width: 600px;
+    padding-bottom: 20px;
+}
+
+.order-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 40px;
+}
+
+.total-price-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.total-price {
+    color: #f2f2f3;
+    font-family: "Iceland", fantasy;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: .75;
+}
+
+.price-icon {
+    display: inline-block;
+    inline-size: 24px;
+    block-size: 24px;
+}
+
+.order-button {
+    color: #f2f2f3;
+    font-family: "Jet Brains Mono", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    border: none;
+    border-radius: 64px;
+    background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
+    padding: 20px 40px;
+    cursor: pointer;
+}
+

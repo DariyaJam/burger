@@ -13,15 +13,12 @@ html, body {
     overflow: hidden;
 }
 
-
-
 #app {
     display: flex;
     flex-direction: column;
     height: 100%;
     flex-wrap: nowrap;
     align-items: stretch;
-   /* height: 100vh;*/
     background-color: #131316;
     color: #f2f2f3;
 }

@@ -1,7 +1,7 @@
-import IngredientItem from "@/components/IngedientItem.vue"
-import NavbarIngredients from '@/components/NavbarIngredients.vue'
-import NavbarPage from '@/components/NavbarPage.vue'
-import BurgerConstructor from '@/components/BurgerConstructor.vue'
+import IngredientItem from "@/components/Ingredients/IngredientsList.vue"
+import NavbarIngredients from '@/components/Ingredients/IngredientsNavbar.vue'
+import NavbarPage from '@/components/AppNavbar.vue'
+import BurgerConstructor from '@/components/Constructor/ConstructorApp.vue'
 
 export default [
   IngredientItem,
