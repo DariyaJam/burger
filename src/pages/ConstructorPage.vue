@@ -1,15 +1,12 @@
 <template>
   <section class="page_constructor">
     <h2 class="constructor_title page_constructor-text-settings">Соберите бургер</h2>
+<!--    {{ ingredientsStore.ingredients }}-->
     <div class="constructor_app-container">
       <div class="ingredients-container">
-
-        <IngredientsNavbar
-     >
-        </IngredientsNavbar>
+        <IngredientsNavbar />
         <div class="ingredients-list-container">
-          <IngredientsList
-          ></IngredientsList>
+          <IngredientsList />
         </div>
       </div>
       <Constructor></Constructor>
@@ -18,27 +15,32 @@
 </template>
 
 <script setup lang="ts">
-import {ref, onMounted} from "vue"
-import { getIngredientsApi } from '@/api/api.ts'
+import { ref, onMounted, watch } from 'vue'
 import { useIngredientsData } from '@/store/ingredients-store.ts'
 
 import IngredientsList from '@/components/Ingredients/IngredientsList.vue'
 import IngredientsNavbar from '@/components/Ingredients/IngredientsNavbar.vue'
 import Constructor from '@/components/Constructor/ConstructorApp.vue'
 
-const store = useIngredientsData();
+const ingredientsStore = useIngredientsData()
 
-const data = store.ingredientsDataApi;
-console.log(data)
+/*if (!ingredientsStore.ingredients.length) {
+  ingredientsStore.getIngredients()
+}
 
-/*onMounted(async() => {
-  const ingredients = await getIngredientsApi();
- console.log(ingredients)
-})*/
-
-
-
-
+// Следим за изменениями ингредиентов
+watch(
+  () => ingredientsStore.ingredients,
+  (oldIngredients, newIngredients) => {
+    console.log('Ингредиенты изменились:', oldIngredients, newIngredients)
+  },
+  { deep: true, immediate: true }
+)*/
+onMounted(async () => {
+  setTimeout(() =>
+    ingredientsStore.getIngredients(),
+    500)
+})
 
 </script>
 

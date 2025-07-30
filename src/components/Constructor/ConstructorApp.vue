@@ -1,8 +1,11 @@
 <template>
   <div class="constructor-app">
-    <ConstructorLayer  v-for="n in 3"
-                       :key="n"
+    <ConstructorLayer
+      v-for="layer in burgerStore.myBurger"
+      :key="layer.code"
+      :code="layer.code"
     >
+      {{layer}}
     </ConstructorLayer>
     <div class="order-container">
       <div class="total-price-container">
@@ -17,7 +20,9 @@
 <script setup lang="ts">
 
 import ConstructorLayer from '@/components/Constructor/ConstructorLayer.vue'
+import { useConstructor } from '@/store/constructor-store.ts'
 
+const burgerStore = useConstructor()
 </script>
 
 <style scoped>

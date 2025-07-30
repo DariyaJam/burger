@@ -5,6 +5,7 @@ import directives from '@/directives'
 import App from './App.vue'
 import router from './router'
 
+console.clear();
 const app = createApp(App)
 
 

@@ -5,12 +5,8 @@ const config = {
   }
 }
 
-const checkResponse = (res) => {
-  res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
-}
-
 export const getIngredientsApi =  () => {
   return fetch(`${config.baseURL}/ingredients`, {
     headers: config.headers,
-  }).then((res) => res.json())
+  }).then((ingredientsDataApi) => ingredientsDataApi.json())
 }
