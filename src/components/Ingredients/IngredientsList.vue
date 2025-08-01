@@ -35,13 +35,12 @@
 <script setup lang="ts">
 
 import { useIngredientsData } from '@/store/ingredients-store.ts'
-import {useConstructor} from '@/store/constructor-store.ts'
+import {useBurger} from '@/store/constructor-store.ts'
 import Loader from '@/images/svg/Loader.vue'
 
 
 const ingredientsStore = useIngredientsData()
 const getIngredientsState = () => {
-  console.log(ingredientsStore.ingredients)
   if (ingredientsStore.ingredients) {
     return true
   } else {
@@ -49,10 +48,11 @@ const getIngredientsState = () => {
   }
 }
 
-const constructorStore = useConstructor()
-function addIngredientFunction(code, id) {
-  constructorStore.addIngredient(code, id)
-  console.log('добавить ингридиент',code, id)
+const burgerStore = useBurger()
+
+function addIngredientFunction(type, id) {
+  burgerStore.addIngredient(type, id)
+  console.log('добавить ингридиент',type, id)
 }
 
 

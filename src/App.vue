@@ -3,13 +3,15 @@ import { defineAsyncComponent } from 'vue'
 import ConstructorPage from '@/pages/ConstructorPage.vue'
 import OrderListPage from '@/pages/OrderFeedPage.vue'
 import AppNavbar from '@/components/AppNavbar.vue'
+import { useBurger, useConstructor } from '@/store/constructor-store.ts'
 
+const burgerStore = useBurger()
 </script>
 
 <template>
   <AppNavbar></AppNavbar>
   <ConstructorPage></ConstructorPage>
-<!--  <OrderListPage></OrderListPage>-->
+  <!--  <OrderListPage></OrderListPage>-->
 </template>
 
 <style>

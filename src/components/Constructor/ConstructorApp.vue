@@ -1,11 +1,11 @@
 <template>
   <div class="constructor-app">
     <ConstructorLayer
-      v-for="layer in burgerStore.myBurger"
+      v-for="layer in burgerStore.burger"
       :key="layer.code"
       :code="layer.code"
     >
-      {{layer}}
+      {{ layer }}
     </ConstructorLayer>
     <div class="order-container">
       <div class="total-price-container">
@@ -20,9 +20,15 @@
 <script setup lang="ts">
 
 import ConstructorLayer from '@/components/Constructor/ConstructorLayer.vue'
-import { useConstructor } from '@/store/constructor-store.ts'
+import { useBurger } from '@/store/constructor-store.ts'
+import { onMounted, watch } from 'vue'
+const burgerStore = useBurger()
+console.log('my burger', burgerStore.myBurger) // всё ОК
 
-const burgerStore = useConstructor()
+onMounted(() => {
+  console.log('Constructor burger mounted', burgerStore.burger)
+})
+
 </script>
 
 <style scoped>

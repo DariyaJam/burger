@@ -33,7 +33,7 @@ export const useIngredientsData = defineStore('ingredients', () => {
 
 
     const getIngredients = async (stictUpdate: boolean = false) => {
-      console.log('get ingredients from store')
+
 
       if (ingredientsApi.value === null || stictUpdate) {
         const response = await getIngredientsApi()
@@ -41,7 +41,6 @@ export const useIngredientsData = defineStore('ingredients', () => {
         sortIngredientsByType()
 
         ingredients.value = sortedIngredients.value
-        console.log('ингридиенты', ingredients.value)
       }
       return ingredients.value
     }
@@ -49,8 +48,8 @@ export const useIngredientsData = defineStore('ingredients', () => {
     return {
       ingredientsTitles,
       ingredients,
-      getIngredients,
       sortedIngredients,
+      getIngredients,
       sortIngredientsByType
     }
   }
