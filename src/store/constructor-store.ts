@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { useIngredientsData } from '@/store/ingredients-store.ts'
+import { getIngredientsApi } from '@/api/api.ts'
 
 
 const defaultBurger = [
@@ -32,47 +33,52 @@ export const useBurger = defineStore(
     const initialized = ref(false)
     const burger = ref(null)
 
-    const totalPrice = ref(0)
+    const burgerComplete = () => burger.value?.reduce((completeVal, layer) => completeVal && layer.elements.length > 0, true)
+
+    /*   const getBurgerPrice1 = () => {
+         let sum = 0
+
+         burger.value?.forEach((layer) => {
+           layer.elements.forEach(id => {
+             const ingredient = ingredients.getIngredient(id)
+             if (ingredient && ingredient.price) {
+               sum += Number(ingredient.price)
+             }
+           })
+         })
+
+         return sum
+       }*/
+
+    const getBurgerPrice = () =>
+      burger.value?.reduce(
+        (burgerSum, layer) =>
+          burgerSum +
+          layer?.elements.reduce(
+            (layerSum, elementId) =>
+              layerSum + Number(ingredients.getIngredient(elementId)?.price || 0),
+            0
+          ),
+        0
+      ) ?? 0
 
 
-    const calcTotalPrice = () => {
-      let sum = 0
-      if (!burger.value) return 0
+    const deleteIngredient = (index) => {
 
-      burger.value.forEach((layer) => {
-        layer.elements.forEach(id => {
-          const ingredient = ingredients.getIngredient(id)
-          if (ingredient && ingredient.price) {
-            sum += Number(ingredient.price)
-          }
-        })
-      })
+      console.log('Удаляем', index)
+      console.log('Было', burger.value)
 
-      totalPrice.value = sum
 
-      return totalPrice.value
-    }
+      const newBurger = burger.value.map(layer => layer.code === 'main' ?
+        { ...layer, elements: layer.elements.filter((_, itemIndex) => index !== itemIndex) }
+        : layer
+      )
 
-    const deleteIngredient = (ingredientId) => {
-      if (!burger.value) return
 
-      const newBurger = burger.value.map(layer => {
-        return {
-          ...layer,
-          elements: layer.elements.filter(id => id !== ingredientId)
-        }
-      })
+      saveToStore(newBurger)
+      burger.value = [...newBurger] // <- ключевой момент — перезаписываем, чтобы был реактивный update
 
-      burger.value = newBurger // <- ключевой момент — перезаписываем, чтобы был реактивный update
 
-      // Обновляем localStorage
-      const storeData = {}
-      newBurger.forEach(layer => {
-        storeData[layer.code] = layer.elements
-      })
-      localStorage.setItem('burger', JSON.stringify(storeData))
-
-      calcTotalPrice()
     }
 
 
@@ -90,7 +96,7 @@ export const useBurger = defineStore(
 
             if (layerIndex > -1) {
               /*const layer = storageBurger[layerIndex]*/
-           /*   console.log('layer',layer)*/
+              /*   console.log('layer',layer)*/
               Array.from(storageBurger[key]).forEach(ingredientId => {
                 if (ingredients.getIngredient(ingredientId)._id === ingredientId) {
                   burgerModel[layerIndex]['elements'].push(ingredientId)
@@ -103,7 +109,7 @@ export const useBurger = defineStore(
         }
         burger.value = burgerModel
         initialized.value = true
-        calcTotalPrice()
+
       }
 
     }
@@ -151,19 +157,25 @@ export const useBurger = defineStore(
           }
         })
 
-        const storeData = {}
-        Object.entries(newBurger).forEach(([key, value]) => {
-          storeData[value.code] = value.elements
-        })
 
-        localStorage.setItem('burger', JSON.stringify(storeData))
+        saveToStore(newBurger)
+
 
         burger.value = [...newBurger]
-        calcTotalPrice()
 
 
       }
 
+
+    }
+
+    const saveToStore = (model) => {
+      const storeData = {}
+      Object.entries(model).forEach(([key, value]) => {
+        storeData[value.code] = value.elements
+      })
+
+      localStorage.setItem('burger', JSON.stringify(storeData))
     }
 
     return {
@@ -171,7 +183,8 @@ export const useBurger = defineStore(
       initBurger,
       getLayer,
       addIngredient,
-      calcTotalPrice,
-      deleteIngredient
+      deleteIngredient,
+      getBurgerPrice,
+      burgerComplete
     }
   })

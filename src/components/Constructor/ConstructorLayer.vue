@@ -1,11 +1,12 @@
 <template>
   <template v-if="data">
+    {{ data }}
     <ul class="constructor-list">
       <template v-if="data?.elements?.length > 0">
         <li class="constructor-list-item" v-for="(item, index) in data.elements" :key="index">
           <template v-if="ingredientsStore.getIngredient(item)">
-<!--            {{ item }}
-            {{ ingredientsStore.getIngredient(item) }}-->
+            <!--            {{ item }}
+                        {{ ingredientsStore.getIngredient(item) }}-->
             <template v-if="data.multiple">
               <div class="move-buttons-container">
                 <button class="move-button">
@@ -27,14 +28,16 @@
 
             <div class="constructor-list-item-container">
               <div class="constructor-list-item-container-fill">
-                <img class="constructor-list-item-img" :src="ingredientsStore.getIngredient(item).image" :alt="ingredientsStore.getIngredient(item).name">
+                <img class="constructor-list-item-img" :src="ingredientsStore.getIngredient(item).image"
+                     :alt="ingredientsStore.getIngredient(item).name">
 
-                <p class="constructor-list-item-text constructor-list-text-settings">{{ingredientsStore.getIngredient(item).name}}</p>
+                <p class="constructor-list-item-text constructor-list-text-settings">
+                  {{ ingredientsStore.getIngredient(item).name }}</p>
 
-                <p class="constructor-list-item-price">{{ingredientsStore.getIngredient(item).price}}</p>
+                <p class="constructor-list-item-price">{{ ingredientsStore.getIngredient(item).price }}</p>
                 <img class="price-icon" src="../../images/priceIcon.svg" alt="Валюта">
                 <template v-if="data.multiple">
-                  <button class="delete-button" @click="burgerStore.deleteIngredient(item)">
+                  <button class="delete-button" @click="burgerStore.deleteIngredient(index)">
                     <img src="../../images/deleteIcon.svg" alt="Удалить">
                   </button>
                 </template>
@@ -65,7 +68,7 @@
 <script setup lang="ts">
 import { useIngredientsData } from '@/store/ingredients-store.ts'
 import { useBurger } from '@/store/constructor-store.ts'
-import { watch } from 'vue'
+import { computed } from 'vue'
 
 const burgerStore = useBurger()
 const ingredientsStore = useIngredientsData()
@@ -76,8 +79,7 @@ const props = defineProps({
   }
 })
 
-const data = burgerStore.getLayer(props.code)
-
+const data = computed(() => burgerStore.getLayer(props.code))
 
 </script>
 
