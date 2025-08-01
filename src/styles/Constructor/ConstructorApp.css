@@ -42,8 +42,20 @@
     line-height: 1.5;
     border: none;
     border-radius: 64px;
+    transition: all 0.3s ease-in-out;
     background: linear-gradient(63.18deg, #801ab3 0%, #4c4cff 100%);
     padding: 20px 40px;
     cursor: pointer;
+}
+
+.order-button:hover:not(:disabled) {
+    box-shadow: 0px 0px 16px 8px rgba(51, 51, 255, 0.25), 0px 0px 8px 8px rgba(51, 51, 255, 0.25);
+    filter: drop-shadow(0px 4px 32px rgba(51, 51, 255, 0.25));
+}
+
+.order-button:disabled {
+    color: #8585ad;
+    background: #3a3a55;
+    cursor: default;
 }
 

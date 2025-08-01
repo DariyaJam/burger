@@ -9,6 +9,7 @@ export const useIngredientsData = defineStore('ingredients', () => {
     const sortedIngredients = ref({})
     const ingredients = ref({})
 
+
     const ingredientsTitles = {
       bun: 'Булки',
       main: 'Начинки',
@@ -32,17 +33,30 @@ export const useIngredientsData = defineStore('ingredients', () => {
     }
 
 
-    const getIngredients = async (stictUpdate: boolean = false) => {
+    const getIngredients = async (strictUpdate: boolean = false) => {
 
 
-      if (ingredientsApi.value === null || stictUpdate) {
+      if (ingredientsApi.value === null || strictUpdate) {
         const response = await getIngredientsApi()
         ingredientsApi.value = response.data
         sortIngredientsByType()
 
         ingredients.value = sortedIngredients.value
       }
+      console.log('Ингридиенты', ingredients.value)
       return ingredients.value
+    }
+
+    const getIngredient =  (ingredientId) => {
+      if(ingredientsApi.value) {
+        const tempIngredients = [...ingredientsApi.value];
+       /* console.log('get ingredient', ingredientId, ingredientsApi.value)*/
+      /*  console.log(ingredientsApi.value?.find(ingredient => ingredient?._id === ingredientId))*/
+
+
+        return ingredientsApi.value?.find(ingredient => ingredient?._id === ingredientId) || {}
+      }
+      return  {}
     }
 
     return {
@@ -50,7 +64,8 @@ export const useIngredientsData = defineStore('ingredients', () => {
       ingredients,
       sortedIngredients,
       getIngredients,
-      sortIngredientsByType
+      sortIngredientsByType,
+      getIngredient
     }
   }
 )

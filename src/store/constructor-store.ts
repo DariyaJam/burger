@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
+import { useIngredientsData } from '@/store/ingredients-store.ts'
+
 
 const defaultBurger = [
   {
     code: 'top',
     multiple: false,
-    elements: [1],
+    elements: [],
     placeholder: 'Выберите булки'
   },
   {
@@ -17,7 +19,7 @@ const defaultBurger = [
   {
     code: 'bottom',
     multiple: false,
-    elements: [1],
+    elements: [],
     placeholder: 'Выберите булки'
   }
 ]
@@ -25,10 +27,87 @@ const defaultBurger = [
 export const useBurger = defineStore(
   'burger', () => {
 
-    const burger = ref([...defaultBurger])
-    //const burger = ref(123)
+    const ingredients = useIngredientsData()
 
-    console.log(burger.value)
+    const initialized = ref(false)
+    const burger = ref(null)
+
+    const totalPrice = ref(0)
+
+
+    const calcTotalPrice = () => {
+      let sum = 0
+      if (!burger.value) return 0
+
+      burger.value.forEach((layer) => {
+        layer.elements.forEach(id => {
+          const ingredient = ingredients.getIngredient(id)
+          if (ingredient && ingredient.price) {
+            sum += Number(ingredient.price)
+          }
+        })
+      })
+
+      totalPrice.value = sum
+
+      return totalPrice.value
+    }
+
+    const deleteIngredient = (ingredientId) => {
+      if (!burger.value) return
+
+      const newBurger = burger.value.map(layer => {
+        return {
+          ...layer,
+          elements: layer.elements.filter(id => id !== ingredientId)
+        }
+      })
+
+      burger.value = newBurger // <- ключевой момент — перезаписываем, чтобы был реактивный update
+
+      // Обновляем localStorage
+      const storeData = {}
+      newBurger.forEach(layer => {
+        storeData[layer.code] = layer.elements
+      })
+      localStorage.setItem('burger', JSON.stringify(storeData))
+
+      calcTotalPrice()
+    }
+
+
+    const initBurger = async () => {
+
+      if (!initialized.value) {
+        await ingredients.getIngredients()
+        const storageBurger = localStorage.getItem('burger') ? JSON.parse(localStorage.getItem('burger')) || {} : {}
+        const burgerModel = [...defaultBurger]
+
+        if (Object.keys(storageBurger).length > 0) {
+
+          Object.entries(storageBurger).forEach(([key, elements]) => {
+            const layerIndex = burgerModel.findIndex(layer => layer.code === key)
+
+            if (layerIndex > -1) {
+              /*const layer = storageBurger[layerIndex]*/
+           /*   console.log('layer',layer)*/
+              Array.from(storageBurger[key]).forEach(ingredientId => {
+                if (ingredients.getIngredient(ingredientId)._id === ingredientId) {
+                  burgerModel[layerIndex]['elements'].push(ingredientId)
+                }
+
+
+              })
+            }
+          })
+        }
+        burger.value = burgerModel
+        initialized.value = true
+        calcTotalPrice()
+      }
+
+    }
+
 
     const getLayer = (code) => burger?.value?.find(layer => layer.code === code)
 
@@ -50,65 +129,49 @@ export const useBurger = defineStore(
 
 
     const addIngredient = (type, id) => {
-      console.log(type, id)
 
-       const addingLayers = getBurgerLayersToAdd(type)
-      //
+
+      const addingLayers = getBurgerLayersToAdd(type)
       if (addingLayers) {
         const newBurger = [...burger.value]
 
-        console.log('create new burger',newBurger)
 
         addingLayers.forEach(layerCode => {
           const index = newBurger.findIndex(layer => layer.code === layerCode)
 
           if (index > -1) {
-            const replaceAction = !newBurger[index].multiple;
-            console.log('is replace action',replaceAction);
+            const replaceAction = !newBurger[index].multiple
 
 
-            if(replaceAction){
+            if (replaceAction) {
               newBurger[index].elements = [id]
-            }else{
+            } else {
               newBurger[index].elements.push(id)
             }
           }
-        });
+        })
 
-        burger.value = [...newBurger];
+        const storeData = {}
+        Object.entries(newBurger).forEach(([key, value]) => {
+          storeData[value.code] = value.elements
+        })
 
+        localStorage.setItem('burger', JSON.stringify(storeData))
 
+        burger.value = [...newBurger]
+        calcTotalPrice()
 
-        console.log('changed burger',newBurger)
 
       }
 
-      /*const layer = getLayer(code)
-      console.log('слой',layer)
-      if (!layer) return
-      if (layer.multiple) {
-        layer.elements.push(id)
-      } else {
-        layer.elements = [id]
-      }*/
-      /* const layersList = {
-         'bun': 'top',
-         'sauce': 'main',
-         'main': 'main'
-       }
-       const layer = getLayer(layersList[type])
-       console.log('слой', layer)
-       if (layer.multiple) {
-         layer.elements.push(id)
-       } else {
-         layer.elements = [id]
-       }
-   */
     }
 
     return {
       burger,
+      initBurger,
       getLayer,
-      addIngredient
+      addIngredient,
+      calcTotalPrice,
+      deleteIngredient
     }
   })

@@ -1,15 +1,16 @@
 <template>
   <div class="constructor-app">
+    {{ burgerStore.burger }}
     <ConstructorLayer
       v-for="layer in burgerStore.burger"
       :key="layer.code"
       :code="layer.code"
     >
-      {{ layer }}
+      {{ layer.elements }}
     </ConstructorLayer>
     <div class="order-container">
       <div class="total-price-container">
-        <p class="total-price">610</p>
+        <p class="total-price">{{burgerStore.calcTotalPrice()}}</p>
         <img class="price-icon" src="@/images/priceIcon.svg" alt="Валюта">
       </div>
       <button class="order-button">Оформить заказ</button>
@@ -21,12 +22,20 @@
 
 import ConstructorLayer from '@/components/Constructor/ConstructorLayer.vue'
 import { useBurger } from '@/store/constructor-store.ts'
-import { onMounted, watch } from 'vue'
-const burgerStore = useBurger()
-console.log('my burger', burgerStore.myBurger) // всё ОК
+import { onBeforeMount, onMounted, watch } from 'vue'
+import { useIngredientsData } from '@/store/ingredients-store.ts'
 
-onMounted(() => {
+const burgerStore = useBurger()
+const ingredientStore = useIngredientsData()
+
+onBeforeMount(async () => {
+  await burgerStore.initBurger()
+  console.log(burgerStore.burger)
+})
+
+onMounted(async () => {
   console.log('Constructor burger mounted', burgerStore.burger)
+  console.log('Бургер',burgerStore.burger)
 })
 
 </script>
