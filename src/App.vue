@@ -10,8 +10,9 @@ const burgerStore = useBurger()
 
 <template>
   <AppNavbar></AppNavbar>
-  <ConstructorPage></ConstructorPage>
-  <!--  <OrderListPage></OrderListPage>-->
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style>

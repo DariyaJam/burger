@@ -6,3 +6,9 @@
 @import url('@/styles/Ingredients/IngredientsNavbar.css');
 @import url('@/styles/Constructor/ConstructorApp.css');
 @import url('@/styles/Constructor/ConstructorLayer.css');
+@import url('@/styles/Pages/LoginPage.css');
+@import url('@/styles/UI/InputComponent.css');
+@import url('@/styles/UI/ButtonComponent.css');
+@import url('@/styles/Pages/RegisterPage.css');
+@import url('@/styles/Pages/ForgotPasswordPage.css');
+@import url('@/styles/Pages/ResetPasswordPage.css');

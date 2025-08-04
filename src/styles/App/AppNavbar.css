@@ -45,6 +45,11 @@
     margin-left: auto;
 }
 
+.nav-item:disabled {
+    color: #f2f2f3;
+}
+
+
 .nav-item-icon {
     display: inline-block;
     block-size: 24px;
@@ -64,3 +69,4 @@
     max-width: 100%;
     max-height: 100%;
 }
+

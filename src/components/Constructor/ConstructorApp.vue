@@ -1,6 +1,6 @@
 <template>
   <div class="constructor-app">
-    {{ burgerStore.burger }}
+
     <ConstructorLayer
       v-for="layer in burgerStore.burger"
       :key="layer.code"

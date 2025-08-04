@@ -1,6 +1,6 @@
 <template>
   <template v-if="data">
-    {{ data }}
+
     <ul class="constructor-list">
       <template v-if="data?.elements?.length > 0">
         <li class="constructor-list-item" v-for="(item, index) in data.elements" :key="index">

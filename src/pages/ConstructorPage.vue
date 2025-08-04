@@ -1,7 +1,7 @@
 <template>
   <section class="page_constructor">
     <h2 class="constructor_title page_constructor-text-settings">Соберите бургер</h2>
-<!--    {{ ingredientsStore.ingredients }}-->
+
     <div class="constructor_app-container">
       <div class="ingredients-container">
         <IngredientsNavbar />
@@ -9,7 +9,8 @@
           <IngredientsList />
         </div>
       </div>
-      <Constructor></Constructor>
+      <div class="ingredients-list-container"> <Constructor></Constructor></div>
+
     </div>
   </section>
 </template>
