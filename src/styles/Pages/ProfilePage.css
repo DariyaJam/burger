@@ -1,0 +1,58 @@
+.profile-page-text-settings {
+    color: #8585ad;
+    font-family: "Jet Brains Mono", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.profile-page-container {
+    display: flex;
+    width: 1240px;
+    margin: 120px auto;
+}
+
+.profile-navbar-container {
+    margin-right: 60px;
+}
+
+.profile-navbar {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-navbar-item {
+    padding: 16px 0;
+}
+
+.profile-navbar-description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    opacity: 0.4;
+    inline-size: 320px;
+    margin-top: 80px;
+}
+
+.change-personal-data-buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-items: start;
+}
+
+.cancel-button {
+    color: #4c4cff;
+    font-family: "Jet Brains Mono", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 16px 8px;
+    background-color: transparent;
+    border: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.cancel-button:hover {
+    color: #f2f2f3;
+}

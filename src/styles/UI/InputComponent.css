@@ -35,7 +35,7 @@
     position: relative;
 }
 
-.input-focused, .input-filled {
+.input-container.focused, .input-container.filled {
     top: 0;
 }
 
